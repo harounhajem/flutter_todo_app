@@ -1,6 +1,9 @@
-# todo_app
+# Todo App
 
-Todo list
+This is a simple cross-platform Todo App done in Flutter.
+It has a SQLFlite database for presisting data.
+
+![alt text](https://cdn.pixabay.com/photo/2016/03/31/19/50/checklist-1295319_960_720.png)
 
 ## Getting Started
 
