@@ -17,7 +17,7 @@ class DbHelper {
 
   Future<Database> get db async {
     if (_db == null) {
-      await initilizeDatabase();
+      _db = await initilizeDatabase();
     }
     return _db;
   }
@@ -64,14 +64,15 @@ class DbHelper {
 
   Future<int> updateTodo(Todo todo) async {
     Database db = await this.db;
-    var  result = await db.update(tblTodo, todo.toMap(), where: "$colId = ?", whereArgs: [todo.id]);
+    var result = await db.update(tblTodo, todo.toMap(),
+        where: "$colId = ?", whereArgs: [todo.id]);
     return result;
   }
 
   Future<int> deleteTodo(Todo todo) async {
     Database db = await this.db;
-    var  result = await db.rawDelete("DELETE FROM $tblTodo WHERE $colId = ${todo.id}");
+    var result =
+        await db.rawDelete("DELETE FROM $tblTodo WHERE $colId = ${todo.id}");
     return result;
   }
-
-  }
+}
