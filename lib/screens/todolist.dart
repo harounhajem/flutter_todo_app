@@ -57,17 +57,35 @@ class TodoListState extends State {
             elevation: 2.0,
             child: ListTile(
               leading: CircleAvatar(
-                backgroundColor: Colors.red,
-                child: Text(this._todos[position].priority.toString()),
+                backgroundColor: getColor(this._todos[position].priority),
+                child: Text(this._todos[position].priority.toString(),
+                    style: TextStyle(color: Colors.white)),
               ),
               title: Text(this._todos[position].title),
               subtitle: Text(this._todos[position].date),
               onTap: () {
-                String ran = Random.secure().nextInt(6000).toString();
-                debugPrint("Tap $ran");
+                debugPrint(
+                    "Tap item ${this._todos[position].id.toString()}, ${Random.secure().nextInt(6000).toString()}");
               },
             ),
           );
         });
+  }
+
+  Color getColor(int prio) {
+    switch (prio) {
+      case 1:
+        return Colors.red;
+      case 2:
+        return Colors.orange;
+      case 3:
+        return Colors.yellow;
+      case 4:
+        return Colors.lime;
+      case 5:
+        return Colors.green;
+      default:
+        return Colors.white;
+    }
   }
 }
