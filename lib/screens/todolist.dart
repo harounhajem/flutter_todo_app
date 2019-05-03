@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/model/todo.dart';
 import 'package:todo_app/util/dbhelper.dart';
+import 'package:todo_app/screens/todo_detail.dart';
 import 'dart:math';
 
 class TodoList extends StatefulWidget {
@@ -22,7 +23,9 @@ class TodoListState extends State {
     return Scaffold(
         body: todoListItems(),
         floatingActionButton: FloatingActionButton(
-            onPressed: null,
+            onPressed: () {
+              navigateDetail(Todo('', 3, '', ''));
+            },
             tooltip: "Add new Todo",
             child: Icon(Icons.add_circle_outline)));
   }
@@ -59,13 +62,14 @@ class TodoListState extends State {
               leading: CircleAvatar(
                 backgroundColor: getColor(this._todos[position].priority),
                 child: Text(this._todos[position].priority.toString(),
-                    style: TextStyle(color: Colors.white)),
+                    style: TextStyle(color: Color(0xFFDDAAFF))),
               ),
               title: Text(this._todos[position].title),
               subtitle: Text(this._todos[position].date),
               onTap: () {
                 debugPrint(
                     "Tap item ${this._todos[position].id.toString()}, ${Random.secure().nextInt(6000).toString()}");
+                navigateDetail(this._todos[position]);
               },
             ),
           );
@@ -87,5 +91,10 @@ class TodoListState extends State {
       default:
         return Colors.white;
     }
+  }
+
+  void navigateDetail(Todo todo) async {
+    bool result = await Navigator.push(
+        context, MaterialPageRoute(builder: (context) => TodoDetails(todo)));
   }
 }
