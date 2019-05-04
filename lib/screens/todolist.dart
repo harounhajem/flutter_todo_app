@@ -62,7 +62,7 @@ class TodoListState extends State {
               leading: CircleAvatar(
                 backgroundColor: getColor(this._todos[position].priority),
                 child: Text(this._todos[position].priority.toString(),
-                    style: TextStyle(color: Color(0xFFDDAAFF))),
+                    style: TextStyle(color: Color(0xFF000000))),
               ),
               title: Text(this._todos[position].title),
               subtitle: Text(this._todos[position].date),
@@ -96,5 +96,8 @@ class TodoListState extends State {
   void navigateDetail(Todo todo) async {
     bool result = await Navigator.push(
         context, MaterialPageRoute(builder: (context) => TodoDetails(todo)));
+    if (result) {
+     getData();
+    }
   }
 }

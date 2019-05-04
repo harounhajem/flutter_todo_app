@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/util/dbhelper.dart';
-import 'package:todo_app/model/todo.dart';
 import 'package:todo_app/screens/todolist.dart';
 
 void main() => runApp(MyApp());
@@ -10,7 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Todos',
+      title: 'TodoApp',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -29,7 +27,7 @@ class MyHomepageState extends State<StatefulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hello"),
+        title: Text("Todo List"),
       ),
       body: TodoList(),
     );
